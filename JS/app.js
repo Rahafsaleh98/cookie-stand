@@ -231,7 +231,7 @@ let Paris = {
 calcEachHourCust:function(){
   for(let i=0 ; i<workHours.length;i++){
 // push eachhourcust:-
-this.eachHourCust.push(Math.random(this.MinCust,this.MaxCust))
+this.eachHourCust.push(Math.random(this.MinCust,this.MaxCust));
    }
   },
 
@@ -285,12 +285,12 @@ let Lima = {
   AvgCookies:4.6,
   eachHourCust :[],
   eachHourCookies:[],
-  total:0, 
+  total:0,
 
 //create method for object
 calcEachHourCust:function(){
   for(let i=0 ; i<workHours.length;i++){
-// push eachhourcust:-
+ // push eachhourcust:-
 this.eachHourCust.push(Math.random(this.MinCust,this.MaxCust))
    }
   },
@@ -303,7 +303,6 @@ this.eachHourCookies.push(Math.floor(this.eachHourCust[i]*this.AvgCookies));
 this.total+=this.eachHourCookies[i] 
   }
 },
-
 render:function(){
   // get the parent element by id:
   let parent= document.getElementById('parent');
@@ -331,9 +330,58 @@ render:function(){
 }
 }
 
-// for every fuction we need to call it
 Lima.calcEachHourCust();
 Lima.calcEachHourCookies();
 Lima.render();
 
 
+
+  /*function location (name, MinCust, MaxCust, AvgCookies) {
+    this.name = name;
+    this.MinCust = MinCust;
+    this.MaxCust = MaxCust;
+    this.AvgCookies = AvgCookies;
+    this.eachHourCust = [];
+    this.eachHourCookies = [];
+    this.total = 0;
+}
+Location.prototype.eachHourCus = function () {
+    for (let i = 0; i < workHours.length; i++) {
+      this.eachHourCust.push(Math.random(this.MinCust,this.MaxCust));
+
+    }
+}
+Location.prototype.eachHourCookies = function () {
+    for (let i = 0; i < workHours.length; i++) {
+        this.eachHourCookies.push(Math.floor(this.eachHourCust[i]*this.AvgCookies));
+        this.total+=this.eachHourCookies[i]
+    }
+}
+
+
+Location.prototype.render=function(){
+  // get the parent element by id:
+  let parent= document.getElementById('parent');
+  console.log(parent);
+  let shopName = document.createElement('h3');
+  parent.appendChild(shopName);
+  // give text content
+  shopName.textContent = this.name;
+  // created an element 
+  let unorderedList=document.createElement('ul');
+  // append element to parent
+  parent.appendChild(unorderedList);
+  for(let i =0;i<workHours.length;i++){
+    // create li
+    let listItem=document.createElement('li');
+    // append li
+    unorderedList.appendChild(listItem);
+    // give text content
+    listItem.textContent = `${workHours[i]}: ${this.eachHourCookies[i]} cookies`
+  }
+  // create total elemnt:
+  let totalItem = document.createElement('li');
+  unorderedList.appendChild(totalItem);
+  totalItem.textContent=`total: ${this.total} cookies`;
+}
+Location.render()*/
