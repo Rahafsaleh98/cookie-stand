@@ -1,12 +1,12 @@
 ' use strict '
 
-const workHours = ['6 Am' , ' 7 Am' , ' 8 Am' , '9 Am' , '10 Am' , ' 11 Am' , ' 12 Pm' , ' 1 Pm' , ' 2 Pm' , ' 3 Pm' , ' 4 Pm', '5 pm', '6 Pm' , ' 7 Pm',]
+let workHours = ['6 Am' , ' 7 Am' , ' 8 Am' , '9 Am' , '10 Am' , ' 11 Am' , ' 12 Pm' , ' 1 Pm' , ' 2 Pm' , ' 3 Pm' , ' 4 Pm', '5 pm', '6 Pm' , ' 7 Pm',]
 
 function random(min , max){
-  return Math.floor (math.random()*(max-min+1)+min);
+  return Math.floor (Math.random()*(max-min+1)+min);
 }
 
-const seattle = {
+let seattle = {
   name:'Seattle',
   MinCust:23,
   MaxCust:65,
@@ -98,7 +98,7 @@ seattle.render();
 
 //******************************************** */
 
-const Tokyo = {
+let Tokyo = {
   name:'Tokyo',
   MinCust:11,
   MaxCust:8,
@@ -158,7 +158,7 @@ Tokyo.render();
 
 /****************************************************** */
 
-const Dubai = {
+let Dubai = {
   name:'Dubai',
   MinCust:3,
   MaxCust:24,
@@ -218,7 +218,7 @@ Dubai.render();
 
 /***************************************************** */
 
-const Paris = {
+let Paris = {
   name:'Paris',
   MinCust:20,
   MaxCust:38,
@@ -278,7 +278,7 @@ Paris.render();
 
 /**************************************************************** */
 
-const Lima = {
+let Lima = {
   name:'Lima',
   MinCust:2,
   MaxCust:16,
