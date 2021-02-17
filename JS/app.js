@@ -1,58 +1,120 @@
 'use strict'
+let Clock = ['6 Am', ' 7 Am', ' 8 Am', '9 Am', '10 Am', ' 11 Am', ' 12 Pm', ' 1 Pm', ' 2 Pm', ' 3 Pm', ' 4 Pm', '5 pm', '6 Pm', ' 7 Pm',]
 
-let workHours = ['6 Am' , ' 7 Am' , ' 8 Am' , '9 Am' , '10 Am' , ' 11 Am' , ' 12 Pm' , ' 1 Pm' , ' 2 Pm' , ' 3 Pm' , ' 4 Pm', '5 pm', '6 Pm' , ' 7 Pm',]
+let Shops = [];
 
-
-function random(min , max){
-    return Math.floor (Math.random()*(max-min+1)+min);
-  }
-
-
-function Location(name,MinCust,MaxCust,AvgCookies) {
-    this.name=name;
-    this.MinCust=MinCust;
-    this.MaxCust=MaxCust;
-    this.AvgCookies=AvgCookies;
-    
+function Shop(name, MinCust, MaxCust, AverageCookies) {
+    this.name = name;
+    this.MinCust = MinCust;
+    this.MaxCust = MaxCust;
+    this.AverageCookies = AverageCookies;
+    this.eachHourCust = [];
+    this.eachHourCookies = [];
+    this.total = 0;
+ Shops.push(this);
 }
 
-Location.prototype.calcEachHourCust=function(){
-    for(let i=0 ; i<workHours.length;i++){
-  this.eachHourCust.push(Math.random(this.MaxCust , this.MaxCust));
-     }
-    } 
-
-Location.prototype.calcEachHourCookies=function(){
-    for(let i=0; i<workHours.length;i++){
-        this.eachHourCookies.push(Math.floor(this.eachHourCust[i]*this.AvgCookies));
+Shop.prototype.random = function (MinCust, MaxCust) {
+    return Math.floor(Math.random() * (MaxCust - MinCust + 1) + MinCust);
+}
+Shop.prototype.eachHourCustFun = function () {
+    for (let i = 0; i < Clock.length; i++) {
+        this.eachHourCust.push(this.random(this.MinCust, this.MaxCust));
+    }
+}
+Shop.prototype.calceachHourCookies = function () {
+    for (let i = 0; i < this.eachHourCust.length; i++) {
+        this.eachHourCookies.push(Math.floor(this.AverageCookies * this.eachHourCust[i]));
+        this.total += this.eachHourCookies[i];
     }
 }
 
-let seattle= NewShop('seattle', 23,65,6.3)
-let Tokyo = NewShop('Tokyo',3,24,1.2)
-let Dubai = NewShop('Dubai', 11,38,2.3)
-let paris = NewShop ('Paris', 20,38,2.3)
-let Lima = NewShop('Lima', 2,16,4.6)
-
-
-Location.calcEachHourCust();
-Location.calcEachHourCookies();
+let Seattle = new Shop('Seattle', 23, 65, 6.3);
+let Tokyo = new Shop('Tokyo', 3, 24, 1.2);
+let Dubai = new Shop('Dubai', 11, 38, 3.7);
+let Paris = new Shop('Paris', 20, 38, 2.3);
+let Lima = new Shop('Lima', 2, 16, 4.6);
 
 
 
-// for create table
-function runder (){
-let Cookies  = document.getElementById('Cookies');
+
+
+let Salmon = document.getElementById('Cookies');
 let table = document.createElement('table');
-Cookies.appendChild(table);
+Salmon.appendChild(table);
+function Headers() {
+    
+    let Row1 = document.createElement('tr');
+    table.appendChild(Row1);
+    let Headers2 = document.createElement('th');
+    Row1.appendChild(Headers2);
+    Headers2.textContent = 'Shop Name';
+    
+    for (let i = 0; i < Clock.length; i++) {
+        let headers3 = document.createElement('th');
+        Row1.appendChild(headers3);
+        headers3.textContent = Clock[i];
+    }
+    let headers3 = document.createElement('th');
+    Row1.appendChild(headers3);
+    headers3.textContent = ('Daily Location Total');
+}
+Headers();
 
-for(let i=0 ; i<workHours.length ; i++){
-let headerRow = document.createElement('th');
-table.appendChild(headerRow)
-headerRow.textContent=hours[i];
+
+Shop.prototype.body= function() {
+    let data = document.createElement('tr');
+    table.appendChild(data);
+    
+    let row2 = document.createElement('td');
+    data.appendChild(row2);
+    row2.textContent = (this.name);
+    
+    for (let i=0; i<Clock.length; i++){
+        let content = document.createElement('td');
+        content.textContent = this.eachHourCookies[i]
+        data.appendChild(content);
+    }
+    let totalOfEachData = document.createElement('td');
+    data.appendChild(totalOfEachData);
+    totalOfEachData.textContent = (this.total);
+}
+
+
+for( let i =0; i< Shops.length; i++){
+ Shops[i].eachHourCustFun();
+ Shops[i].calceachHourCookies();
+ Shops[i].body();
 }
 
 
 
+ let footer = function () {
+    let totalOfAllRows = document.createElement('tr');
+    table.appendChild(totalOfAllRows);
 
+    let names = document.createElement('th')
+    totalOfAllRows.appendChild(names);
+    names.textContent = ('Totals');
+
+    let totalOfTotal=0;
+
+    for (let i = 0; i < Clock.length; i++) {
+        let totalEachHour=0;
+
+        for (let j =0; j< Shops.length; j++){
+            totalEachHour += Shops[j].eachHourCookies[i];
+            totalOfTotal += Shops[j].eachHourCookies[i];
+        }
+
+        let FinalTotal = document.createElement('th');
+        totalOfAllRows.appendChild(FinalTotal);
+        FinalTotal.textContent = totalEachHour;
+    }
+
+    let AllTotals = document.createElement('th');
+    totalOfAllRows.appendChild(AllTotals);
+    AllTotals.textContent = (totalOfTotal)
+    
 }
+footer()
