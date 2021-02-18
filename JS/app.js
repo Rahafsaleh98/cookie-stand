@@ -129,11 +129,10 @@ let name = event.target.nameField.value;
 let min1 = event.target.minimum.value;
 let max1 = event.target.maximum.value;
  let avg = event.target.avgOfCookies.value;
-let newShops = new Shop(name, min1, max1, avg );
+let newShops = new Shop(name, min1, max1, avg);
 
         newShops.calacEachHourCust();
         newShops.calceachHourCookies();
         newShops.footer();
-
     }
 
