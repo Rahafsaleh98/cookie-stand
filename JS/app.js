@@ -3,23 +3,23 @@ let Clock = ['6 Am', ' 7 Am', ' 8 Am', '9 Am', '10 Am', ' 11 Am', ' 12 Pm', ' 1 
 
 let Shops = [];
 
-function Shop(name, MinCust, MaxCust, AverageCookies) {
+function Shop(name, minimum, MaxCust, AverageCookies) {
     this.name = name;
-    this.MinCust = MinCust;
+    this.minimum = minimum;
     this.MaxCust = MaxCust;
     this.AverageCookies = AverageCookies;
     this.eachHourCust = [];
     this.eachHourCookies = [];
     this.total = 0;
- Shops.push(this);
+    Shops.push(this);
 }
 
-Shop.prototype.random = function (MinCust, MaxCust) {
-    return Math.floor(Math.random() * (MaxCust - MinCust + 1) + MinCust);
+Shop.prototype.random = function (minimum, MaxCust) {
+    return Math.floor(Math.random() * (MaxCust - minimum + 1) + minimum);
 }
-Shop.prototype.eachHourCustFun = function () {
+Shop.prototype.calacEachHourCust = function () {
     for (let i = 0; i < Clock.length; i++) {
-        this.eachHourCust.push(this.random(this.MinCust, this.MaxCust));
+        this.eachHourCust.push(this.random(this.minimum, this.MaxCust));
     }
 }
 Shop.prototype.calceachHourCookies = function () {
@@ -38,18 +38,18 @@ let Lima = new Shop('Lima', 2, 16, 4.6);
 
 
 
-
 let Salmon = document.getElementById('Cookies');
 let table = document.createElement('table');
+table.setAttribute("class", "border_class");
 Salmon.appendChild(table);
 function Headers() {
-    
+
     let Row1 = document.createElement('tr');
     table.appendChild(Row1);
     let Headers2 = document.createElement('th');
     Row1.appendChild(Headers2);
     Headers2.textContent = 'Shop Name';
-    
+
     for (let i = 0; i < Clock.length; i++) {
         let headers3 = document.createElement('th');
         Row1.appendChild(headers3);
@@ -62,15 +62,15 @@ function Headers() {
 Headers();
 
 
-Shop.prototype.body= function() {
+Shop.prototype.body = function () {
     let data = document.createElement('tr');
     table.appendChild(data);
-    
+
     let row2 = document.createElement('td');
     data.appendChild(row2);
     row2.textContent = (this.name);
-    
-    for (let i=0; i<Clock.length; i++){
+
+    for (let i = 0; i < Clock.length; i++) {
         let content = document.createElement('td');
         content.textContent = this.eachHourCookies[i]
         data.appendChild(content);
@@ -81,15 +81,15 @@ Shop.prototype.body= function() {
 }
 
 
-for( let i =0; i< Shops.length; i++){
- Shops[i].eachHourCustFun();
- Shops[i].calceachHourCookies();
- Shops[i].body();
+for (let i = 0; i < Shops.length; i++) {
+    Shops[i].calacEachHourCust();
+    Shops[i].calceachHourCookies();
+    Shops[i].body();
 }
 
 
 
- let footer = function () {
+let footer = function () {
     let totalOfAllRows = document.createElement('tr');
     table.appendChild(totalOfAllRows);
 
@@ -97,12 +97,12 @@ for( let i =0; i< Shops.length; i++){
     totalOfAllRows.appendChild(names);
     names.textContent = ('Totals');
 
-    let totalOfTotal=0;
+    let totalOfTotal = 0;
 
     for (let i = 0; i < Clock.length; i++) {
-        let totalEachHour=0;
+        let totalEachHour = 0;
 
-        for (let j =0; j< Shops.length; j++){
+        for (let j = 0; j < Shops.length; j++) {
             totalEachHour += Shops[j].eachHourCookies[i];
             totalOfTotal += Shops[j].eachHourCookies[i];
         }
@@ -114,7 +114,25 @@ for( let i =0; i< Shops.length; i++){
 
     let AllTotals = document.createElement('th');
     totalOfAllRows.appendChild(AllTotals);
-    AllTotals.textContent = (totalOfTotal)
-    
+    AllTotals.textContent = (totalOfTotal) 
 }
 footer()
+
+
+let newShop = document.getElementById('differentShops');
+newShop.addEventListener('submit', submitter);
+function submitter(event) {
+    event.preventDefault();
+
+totalOfAllRows.textContent = ''
+let name = event.target.nameField.value;
+let min1 = event.target.minimum.value;
+let max1 = event.target.maximum.value;
+ let avg = event.target.avgOfCookies.value;
+let newShops = new Shop(name, min1, max1, avg);
+
+        newShops.calacEachHourCust();
+        newShops.calceachHourCookies();
+        newShops.footer();
+    }
+
