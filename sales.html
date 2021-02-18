@@ -1,22 +1,42 @@
 <html>
-  <head>
-    <title>cookie-stand</title>
-  </head>
-  <body>
-    <header>
-      <h1>cookie stand </h1>
-    </header>
-    <main>
-      <div id="Salmon">
 
-      </div>
-      <div id="Cookies">
+<head>
+  <title>cookie-stand</title>
+  <link rel="stylesheet" href="JS/style.css">
+</head>
 
-      </div>
+<body>
+  <header>
+    <h1> Shops To Sale Cookies </h1>
+  </header>
+  <main>
+    <form action id="differentShops"></form>
+
+    <label for="name" class="label1"> name </label>
+    <input type="text" name="name" id="name" required="required" place=" input place of name">
+<br>
+    <label for="MinCust" class="label"> Minimum Customer</label>
+    <input type="number" name="MinCust" id="MinCust" required="required" place="input minimum number">
+<br>
+    <label for="MaxCust" class="label"> Maximum Customer</label>
+    <input type="number" name="MaxCust" id="MaxCust" required="required" place="input maximum number">
+<br>
+    <label for="eachHourCookies" class="label">Avarge cookies each hour</label>
+    <input type="number" name="eachHourCookies" id="eachHourCookies" required="required"
+      place ="input Avarge cookies each hour">
+<br>
+      <input type="submit" id="bootom" value="Enter">
+
+    <div id="Salmon">
+    </div>
+    <div id="Cookies">
+
+    </div>
 
   </main>
-    <footer>
-    </footer>
-    <script src="JS/app.js"></script>
-  </body>
+  <footer>
+  </footer>
+  <script src="JS/app.js"></script>
+</body>
+
 </html>
