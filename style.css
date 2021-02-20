@@ -1,0 +1,44 @@
+.border_class {
+border: 1px solid rgb(97, 6, 67);}
+    
+ table, th, td {
+        border: 1px solid rgb(248, 248, 248);
+        color: rgb(8, 8, 8);
+      }
+header{
+    text-align: center;
+    color: rgb(121, 52, 115);
+
+}
+body {
+    background-color: rgb(189, 105, 137);
+  }
+
+
+#logo{
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 50%;
+}
+h2{
+
+text-align: center;
+    font-size: 30px;
+    font-weight: bold;
+    color: rgb(151, 158, 158);
+    margin: 50px 0;
+    font-family: 'Open Sans', sans-serif; }
+
+
+    section  p{
+      font-family: 'Times New Roman', Times, serif;
+      font-size: 25px;
+    }
+
+    footer{
+      display: block;
+    margin-left: auto;
+    margin-right: 100px;
+    width: 50%;
+    }

@@ -3,9 +3,9 @@ let Clock = ['6 Am', ' 7 Am', ' 8 Am', '9 Am', '10 Am', ' 11 Am', ' 12 Pm', ' 1 
 
 let Shops = [];
 
-function Shop(name, minimum, MaxCust, AverageCookies) {
+function Shop(name, MinCust, MaxCust, AverageCookies) {
     this.name = name;
-    this.minimum = minimum;
+    this.MinCust = MinCust;
     this.MaxCust = MaxCust;
     this.AverageCookies = AverageCookies;
     this.eachHourCust = [];
@@ -14,12 +14,12 @@ function Shop(name, minimum, MaxCust, AverageCookies) {
     Shops.push(this);
 }
 
-Shop.prototype.random = function (minimum, MaxCust) {
-    return Math.floor(Math.random() * (MaxCust - minimum + 1) + minimum);
+Shop.prototype.random = function (MinCust, MaxCust) {
+    return Math.floor(Math.random() * (MaxCust - MinCust + 1) + MinCust);
 }
 Shop.prototype.calacEachHourCust = function () {
     for (let i = 0; i < Clock.length; i++) {
-        this.eachHourCust.push(this.random(this.minimum, this.MaxCust));
+        this.eachHourCust.push(this.random(this.MinCust, this.MaxCust));
     }
 }
 Shop.prototype.calceachHourCookies = function () {
@@ -114,25 +114,79 @@ let footer = function () {
 
     let AllTotals = document.createElement('th');
     totalOfAllRows.appendChild(AllTotals);
-    AllTotals.textContent = (totalOfTotal) 
+    AllTotals.textContent = (totalOfTotal)
+
 }
-footer()
+
+footer();
+
+let addShop = document.getElementById('differentShop');
+addShop.addEventListener('submit', submitter);
+function submitter(event) {
+
+    event.preventDefault();
+    let name = event.target.nameField.value;
+    let min = event.target.MinCustField.value;
+    let max = event.target.MaxCustField.value;
+    let avg = event.target.AvargeCookiesField;
+
+    let addedShop = newshop(name, min, max, avg);
+    addedShop.calacEachHourCust();
+    addedShop.calceachHourCookies();
+    addedShop.body();
+    addedShop.footer();
+}
 
 
-let newShop = document.getElementById('differentShops');
+
+
+
+
+
+
+
+
+
+/*for(let i=0;i<Shops.length; i++){
+    Shops[i].calacEachHourCust();
+    Shops[i].calceachHourCookies();
+    Shops[i].body();
+}*/
+
+//footer()
+
+/*let newShop = document.getElementById('differentShops');
 newShop.addEventListener('submit', submitter);
 function submitter(event) {
     event.preventDefault();
+    totalOfAllRows.textContent = ''
+    let name = event.target.nameField.value;
+    let min1 = event.target.MinCust.value;
+    let max1 = event.target.maximum.value;
+    let avg = event.target.avgOfCookies.value;
+    let newShops = new Shop(name, min1, max1, avg);
 
-totalOfAllRows.textContent = ''
-let name = event.target.nameField.value;
-let min1 = event.target.minimum.value;
-let max1 = event.target.maximum.value;
- let avg = event.target.avgOfCookies.value;
-let newShops = new Shop(name, min1, max1, avg);
+    newShops.calacEachHourCust();
+    newShops.calceachHourCookies();
+    newShops.footer();
+}
 
-        newShops.calacEachHourCust();
-        newShops.calceachHourCookies();
-        newShops.footer();
-    }
+let shopForm=document.getElementById('differentShop');
+shopForm.addEventListener('submit' , submitter );
+function submitter(event){
+    event.preventDefault();
+    let name=event.target.nameField.value;
+    let min= event.target.MinCustField.value;
+    let max= event.target.MaxCustField.value;
+    let avg= event.target.AvargeCookiesField;
 
+
+name();
+min();
+max();
+avg();
+
+}
+
+let addShop =document.getElementById('differentShop');
+addShop.textContent= ' ';*/
