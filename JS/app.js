@@ -116,6 +116,8 @@ let footer = function () {
     totalOfAllRows.appendChild(AllTotals);
     AllTotals.textContent = (totalOfTotal)
 
+
+
 }
 
 footer();
@@ -130,12 +132,14 @@ function submitter(event) {
     let max = event.target.MaxCustField.value;
     let avg = event.target.AvargeCookiesField;
 
-    let addedShop = newshop(name, min, max, avg);
+    let addedShop = new Shop(name, min, max, avg);
     addedShop.calacEachHourCust();
     addedShop.calceachHourCookies();
     addedShop.body();
-    addedShop.footer();
+
+
 }
+
 
 
 
